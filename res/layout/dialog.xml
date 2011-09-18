@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:padding="6dip" android:background="#ffcccccc"
+	android:textColor="#000000">
+
+	<ScrollView android:id="@+id/scrollView"
+		android:layout_centerHorizontal="true" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:textColor="#000000"
+		android:gravity="center">
+
+		<TextView android:text="just text" android:id="@+id/textViewDialog"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="#000000" />
+
+	</ScrollView>
+
+	<Button android:id="@+id/openMail" android:layout_below="@id/scrollView"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true" android:text="Cancel" />
+
+</RelativeLayout>

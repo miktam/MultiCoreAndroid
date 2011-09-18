@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/rel_layout" 
+	android:layout_width="fill_parent" android:layout_height="?android:attr/listPreferredItemHeight"
+	android:padding="6dip"
+    android:background="#ffcccccc"
+
+	>
+
+	<TextView android:id="@+id/icon" android:layout_width="55dip"
+		android:layout_height="fill_parent" android:layout_alignParentTop="true"
+		android:layout_alignParentBottom="true" android:layout_marginRight="1dip"
+		android:singleLine="true" android:ellipsize="marquee"
+		android:text="1000" 
+		android:textSize="12sp"
+		android:textColor="#000000"/>
+
+	<TextView android:id="@+id/secondLine" 
+	    android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:layout_toRightOf="@id/icon"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true" android:singleLine="true"
+		android:ellipsize="marquee"
+		android:text="NAME OF PAYMENT" 
+		android:textSize="12sp"
+		android:textColor="#000000"/>
+
+	<TextView android:id="@+id/opis"
+	android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:layout_toRightOf="@id/icon"
+		android:layout_alignParentRight="true" 
+		android:layout_alignParentBottom="true"
+		android:layout_below="@id/secondLine"
+		android:gravity="center_vertical"
+		android:text="detailed description" 
+		android:textSize="12sp"
+		android:textColor="#000000"/>
+		
+		<TextView android:id="@+id/date"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/icon"
+        android:gravity="center_vertical"
+        android:text="12/12/2010" 
+        android:textSize="12sp"
+        android:textColor="#000000"/>
+		
+
+</RelativeLayout>
