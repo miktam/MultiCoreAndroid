@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">mWydatki</string>
+    <string name="app_name">MultiCore Android</string>
     <string name="converting">Przetwarzanie</string>
     <string name="please_wait">Czekaj...</string>
-    <string name="howto">Aplikacja przetwarza wyciąg wysyłany co miesiąc przez mBank w formacie HTML.\n\nŻeby zaimportować wyciąg, znajdź email <i>mBank - elektroniczne zestawienie operacji za [miesiac] [rok]</i>, i otwórz załącznik. Podczas otwierania wybierz z listy aplikację mWydatki.\n\nNie musisz podawać żadnego hasła do mBanku. Aplikacja jest tylko i wyłącznie analizatorem wyciągów, i służy do analizy wydatków/przychodów.</string>
-    <string name="howto_label">mWydatki - instrukcja obsługi</string>
+    <string name="howto">Aplikacja przetwarza HTML wysłany do niej używając wielu wątków.</string>
+    <string name="howto_label">MultiCore Android - instrukcja obsługi</string>
 </resources>

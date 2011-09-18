@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import com.mot.multicore.AttachmentReader;
 import com.mot.multicore.expenses.MonthBillData;
 import com.mot.multicore.expenses.OperationEntry;
 import com.mot.multicore.expenses.OperationType;
@@ -21,9 +22,7 @@ import android.util.Log;
 
 public class DataReaderImpl implements DataReader {
 
-	private static String directorySdcard = "/sdcard/";
-	private static String directoryName = "mwydatki/";
-	private static String fullPathToDirectory = directorySdcard + directoryName;
+	private static String fullPathToDirectory = AttachmentReader.DIRECTORY_APPLICATION;
 	private static String encoding = "iso-8859-2";
 
 	private static final String TAG = "DataReader";
@@ -59,7 +58,14 @@ public class DataReaderImpl implements DataReader {
 		for (String file : files) {
 			// File f = new File(directory, file);
 			Log.v(TAG, "found file:" + file);
-			Spanned parsedData = Html.fromHtml(read(fullPathToDirectory + file));
+			String allInString = read(fullPathToDirectory + file);
+			if (allInString.equals("Error while decoding message."))
+			{
+				Log.e(TAG, "Could not read file!!!");
+				break;
+			}
+			Log.v(TAG, allInString);
+			Spanned parsedData = Html.fromHtml(allInString);
 			mapFileData.put(file, parsedData);
 			Log.v(TAG, "parsed this file");
 		}
