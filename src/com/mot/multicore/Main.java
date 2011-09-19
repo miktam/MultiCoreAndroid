@@ -31,16 +31,24 @@ public class Main extends TabActivity {
 		Resources res = getResources(); // Resource object to get Drawables
 		TabHost tabHost = getTabHost(); // The activity TabHost
 		tabHost.clearAllTabs();
-		TabHost.TabSpec spec; // Resusable TabSpec for each tab
+		TabHost.TabSpec spec; // Reusable TabSpec for each tab
 
 		try {
 
 			Intent systemInfo = new Intent().setClass(this, ProcStatReader.class);
 			spec = tabHost
-					.newTabSpec("system")
+					.newTabSpec("stat")
 					.setIndicator("/proc/stat",
 							res.getDrawable(R.drawable.btn_circle_normal))
 					.setContent(systemInfo);
+			tabHost.addTab(spec);
+			
+			Intent systemBinCatReader = new Intent().setClass(this, ProcCpuinfoReader.class);
+			spec = tabHost
+					.newTabSpec("cpuinfo")
+					.setIndicator("/proc/cpuinfo",
+							res.getDrawable(R.drawable.btn_square_overlay_normal))
+					.setContent(systemBinCatReader);
 			tabHost.addTab(spec);
 
 			tabHost.setCurrentTab(0);

@@ -19,6 +19,8 @@
 
 		<activity android:name="SimpleListActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
       	<activity android:name="ProcStatReader" android:theme="@android:style/Theme.NoTitleBar"></activity>
+      	<activity android:name="ProcCpuinfoReader" android:theme="@android:style/Theme.NoTitleBar"></activity>
+      	
       	
 		<activity android:name="AttachmentReader">
 			<intent-filter>
