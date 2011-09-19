@@ -4,18 +4,8 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	<uses-sdk android:minSdkVersion="7" />
 
-
-	<uses-permission android:name="com.android.email.permission.ACCESS_PROVIDER" />
-	<uses-permission android:name="com.android.email.permission.READ_ATTACHMENT" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission
-		android:name="com.google.android.providers.gmail.permission.READ_GMAIL" />
-
-	<uses-permission android:name="com.google.android.gm.permission.READ_GMAIL" />
-	<uses-permission
-		android:name="com.google.android.providers.gmail.permission.READ_GMAIL" />
-
-
+	
 	<application android:icon="@drawable/multicore" android:label="@string/app_name"
 		android:debuggable="false">
 		<activity android:name=".Main" android:label="@string/app_name"
@@ -28,8 +18,7 @@
 		</activity>
 
 		<activity android:name="SimpleListActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
-		
-      	<activity android:name="WelcomeDialog" android:theme="@android:style/Theme.NoTitleBar"></activity>
+      	<activity android:name="ProcStatReader" android:theme="@android:style/Theme.NoTitleBar"></activity>
       	
 		<activity android:name="AttachmentReader">
 			<intent-filter>

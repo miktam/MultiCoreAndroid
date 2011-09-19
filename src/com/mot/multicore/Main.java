@@ -32,25 +32,21 @@ public class Main extends TabActivity {
 		TabHost tabHost = getTabHost(); // The activity TabHost
 		tabHost.clearAllTabs();
 		TabHost.TabSpec spec; // Resusable TabSpec for each tab
-		Intent intent; // Reusable Intent for each tab
 
 		try {
 
-			// Create an Intent to launch an Activity for the tab (to be reused)
-			intent = new Intent().setClass(this, SimpleListActivity.class);
-
-			// Initialize a TabSpec for each tab and add it to the TabHost
+			Intent systemInfo = new Intent().setClass(this, ProcStatReader.class);
 			spec = tabHost
-					.newTabSpec("all")
-					.setIndicator("Wszystko",
-							res.getDrawable(R.drawable.tab_all))
-					.setContent(intent);
-			tabHost.addTab(spec);			
+					.newTabSpec("system")
+					.setIndicator("/proc/stat",
+							res.getDrawable(R.drawable.btn_circle_normal))
+					.setContent(systemInfo);
+			tabHost.addTab(spec);
 
 			tabHost.setCurrentTab(0);
 		} catch (Exception e) {
 			Log.w(TAG, "really bad: " + e.getMessage());
-			ToastMaker.getToast(this, "Plik nie rozpoznany");
+			ToastMaker.getToast(this, e.getMessage());
 			this.finish();
 		}
 	}
