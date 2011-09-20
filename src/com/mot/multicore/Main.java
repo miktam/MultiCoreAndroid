@@ -53,6 +53,17 @@ public class Main extends TabActivity {
 							res.getDrawable(R.drawable.btn_square_overlay_normal))
 					.setContent(systemBinCatReader);
 			tabHost.addTab(spec);
+			
+			Intent sysInfo = new Intent().setClass(this,
+					SystemInfo.class);
+			spec = tabHost
+					.newTabSpec("sysInfo")
+					.setIndicator(
+							"system info",
+							res.getDrawable(R.drawable.btn_square_overlay_disabled))
+					.setContent(sysInfo);
+			tabHost.addTab(spec);
+
 
 			tabHost.setCurrentTab(0);
 		} catch (Exception e) {

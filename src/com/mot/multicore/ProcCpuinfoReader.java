@@ -8,6 +8,8 @@ import com.mot.multicore.tools.FileReader;
 
 /**
  * Show /proc/cpuinfo file
+ * Columns: BogoMIPS: http://en.wikipedia.org/wiki/BogoMips
+ * 
  *
  */
 public class ProcCpuinfoReader extends ListActivity {
