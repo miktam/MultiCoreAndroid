@@ -63,6 +63,16 @@ public class Main extends TabActivity {
 							res.getDrawable(R.drawable.btn_square_overlay_disabled))
 					.setContent(sysInfo);
 			tabHost.addTab(spec);
+			
+			Intent threadMaster = new Intent().setClass(this,
+					ThreadMaster.class);
+			spec = tabHost
+					.newTabSpec("master")
+					.setIndicator(
+							"threads",
+							res.getDrawable(R.drawable.btn_circle_disable))
+					.setContent(threadMaster);
+			tabHost.addTab(spec);
 
 
 			tabHost.setCurrentTab(0);

@@ -15,13 +15,14 @@ import com.mot.multicore.tools.FileReader;
 public class ProcCpuinfoReader extends ListActivity {
 
 	private final String systemBinCat = "/proc/cpuinfo";
+	@SuppressWarnings("unused")
 	private final String TAG = ProcCpuinfoReader.class.getName();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setListAdapter(new ArrayAdapter(this,
+		setListAdapter(new ArrayAdapter<Object>(this,
 				android.R.layout.simple_list_item_1, FileReader.transformFile(systemBinCat, 10).toArray()));
 	}
 }

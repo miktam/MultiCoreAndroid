@@ -2,6 +2,7 @@ package com.mot.multicore;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.mot.multicore.tools.FileReader;
@@ -21,7 +22,8 @@ public class ProcStatReader extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setListAdapter(new ArrayAdapter(this,
+		Log.v(TAG, "set adapter");
+		setListAdapter(new ArrayAdapter<Object>(this,
 				android.R.layout.simple_list_item_1, FileReader.transformFile(procStatLocation, 5).toArray()));
 	}
 
