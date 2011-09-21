@@ -35,45 +35,23 @@ public class Main extends TabActivity {
 
 		try {
 
-			Intent systemInfo = new Intent().setClass(this,
-					ProcStatReader.class);
-			spec = tabHost
-					.newTabSpec("stat")
-					.setIndicator("/proc/stat",
-							res.getDrawable(R.drawable.btn_circle_normal))
-					.setContent(systemInfo);
-			tabHost.addTab(spec);
-
-			Intent systemBinCatReader = new Intent().setClass(this,
-					ProcCpuinfoReader.class);
-			spec = tabHost
-					.newTabSpec("cpuinfo")
-					.setIndicator(
-							"/proc/cpuinfo",
-							res.getDrawable(R.drawable.btn_square_overlay_normal))
-					.setContent(systemBinCatReader);
-			tabHost.addTab(spec);
-			
-			Intent sysInfo = new Intent().setClass(this,
-					SystemInfo.class);
+			Intent sysInfoActivity = new Intent().setClass(this,
+					SystemInfoActivity.class);
 			spec = tabHost
 					.newTabSpec("sysInfo")
-					.setIndicator(
-							"system info",
-							res.getDrawable(R.drawable.btn_square_overlay_disabled))
-					.setContent(sysInfo);
-			tabHost.addTab(spec);
-			
+					.setIndicator("Processor information",
+							res.getDrawable(R.drawable.btn_circle_disable))
+					.setContent(sysInfoActivity);
+			tabHost.addTab(spec);		
+
 			Intent threadMaster = new Intent().setClass(this,
 					ThreadMaster.class);
 			spec = tabHost
 					.newTabSpec("master")
-					.setIndicator(
-							"threads",
-							res.getDrawable(R.drawable.btn_circle_disable))
+					.setIndicator("threads",
+							res.getDrawable(R.drawable.btn_square_overlay_disabled))
 					.setContent(threadMaster);
 			tabHost.addTab(spec);
-
 
 			tabHost.setCurrentTab(0);
 		} catch (Exception e) {

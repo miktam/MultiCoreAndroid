@@ -5,4 +5,5 @@
     <string name="please_wait">Czekaj...</string>
     <string name="howto">Aplikacja przetwarza HTML wysłany do niej używając wielu wątków.</string>
     <string name="howto_label">MultiCore Android - instrukcja obsługi</string>
+    <string name="emptyItem"></string>
 </resources>
