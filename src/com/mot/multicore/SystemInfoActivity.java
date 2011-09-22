@@ -14,7 +14,7 @@ import com.mot.multicore.sysinfo.SystemInfoAdapter;
 
 public class SystemInfoActivity extends ListActivity {
 
-	private ProgressDialog m_ProgressDialog;
+	private ProgressDialog dialog;
 	private List<SystemInfo> sysInfoEntries = new ArrayList<SystemInfo>();
 	private SystemInfoAdapter sysInfoAdapter;
 	private Runnable sysViewerThread;
@@ -36,8 +36,8 @@ public class SystemInfoActivity extends ListActivity {
 		};
 		Thread thread = new Thread(null, sysViewerThread, "MagentoBackground");
 		thread.start();
-		m_ProgressDialog = ProgressDialog.show(SystemInfoActivity.this,
-				"Please wait...", "Retrieving data ...", true);
+		dialog = ProgressDialog.show(SystemInfoActivity.this, "",
+				this.getString(R.string.converting), true);
 	}
 
 	private Runnable dataChangerNotifier = new Runnable() {
@@ -48,7 +48,7 @@ public class SystemInfoActivity extends ListActivity {
 				for (int i = 0; i < sysInfoEntries.size(); i++)
 					sysInfoAdapter.add(sysInfoEntries.get(i));
 			}
-			m_ProgressDialog.dismiss();
+			dialog.dismiss();
 			sysInfoAdapter.notifyDataSetChanged();
 		}
 	};
@@ -60,6 +60,7 @@ public class SystemInfoActivity extends ListActivity {
 
 		// extract meat first
 		sysInfoEntries = cpuInfo.subList(0, 3);
+		sysInfoEntries.add(SystemInfo.coresInfo());
 		sysInfoEntries.addAll(SystemInfo.procCpuStatReader());
 		sysInfoEntries.addAll(SystemInfo.procSpeedReader());
 

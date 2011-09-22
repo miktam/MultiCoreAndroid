@@ -44,13 +44,22 @@ public class Main extends TabActivity {
 					.setContent(sysInfoActivity);
 			tabHost.addTab(spec);		
 
-			Intent threadMaster = new Intent().setClass(this,
-					ThreadMaster.class);
+			Intent piCalculator = new Intent().setClass(this,
+					CalculatePiActivity.class);
+			spec = tabHost
+					.newTabSpec("pi")
+					.setIndicator("\u03C0 calculator",
+							res.getDrawable(R.drawable.btn_square_overlay_disabled))
+					.setContent(piCalculator);
+			tabHost.addTab(spec);			
+			
+			Intent guiManipulator = new Intent().setClass(this,
+					GuiManipulatorActivity.class);
 			spec = tabHost
 					.newTabSpec("master")
-					.setIndicator("threads",
-							res.getDrawable(R.drawable.btn_square_overlay_disabled))
-					.setContent(threadMaster);
+					.setIndicator("GUI elements adder",
+							res.getDrawable(R.drawable.btn_circle_normal))
+					.setContent(guiManipulator);
 			tabHost.addTab(spec);
 
 			tabHost.setCurrentTab(0);

@@ -22,6 +22,17 @@ public class SystemInfo {
 	}
 
 	/**
+	 * Calculate amount of available cores
+	 * 
+	 * @return how many cores machine has
+	 */
+	public static SystemInfo coresInfo() {
+		return new SystemInfo("Amount of cores", ""
+				+ Runtime.getRuntime().availableProcessors(),
+				"Calculated by Runtime.getRuntime().availableProcessors()");
+	}
+
+	/**
 	 * Read proc speed/frequency - does not work on simulator!
 	 */
 	public static List<SystemInfo> procSpeedReader() {
@@ -144,19 +155,33 @@ public class SystemInfo {
 			String[] arr = entry.split(":");
 
 			if (arr.length > 1) {
-				
+
 				if (arr[0].startsWith("Processor"))
-					res.add(new SystemInfo(arr[0], arr[1].trim(), "type of processor"));
+					res.add(new SystemInfo(arr[0], arr[1].trim(),
+							"type of processor"));
 
 				if (arr[0].startsWith("Bogo"))
 					res.add(new SystemInfo(arr[0], arr[1].trim(),
 							"number of million times per second a processor can do absolutely nothing"));
 
 				if (arr[0].startsWith("Features"))
-					res.add(new SystemInfo(arr[0], arr[1].trim(), "processor features"));
+					res.add(new SystemInfo(arr[0], arr[1].trim(),
+							"processor features"));
 			}
 		}
 
 		return res;
+	}
+
+	/**
+	 * Create dummy elements
+	 * @param howMany
+	 * @return created list
+	 */
+	public static List<SystemInfo> getDummyElements(int howMany) {
+		List<SystemInfo> list = new ArrayList<SystemInfo>();
+		for (int i = 0; i < howMany; i++)
+			list.add(new SystemInfo("empty element " + i, "", ""));
+		return list;
 	}
 }

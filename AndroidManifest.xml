@@ -1,37 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.mot.multicore"
-	android:versionCode="1" android:versionName="1.0"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="com.mot.multicore" android:versionCode="1"
+	android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android">
 	<uses-sdk android:minSdkVersion="7" />
 
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	
-	<application android:icon="@drawable/multicore" android:label="@string/app_name"
-		android:debuggable="false">
+
+	<application android:icon="@drawable/multicore"
+		android:label="@string/app_name" android:debuggable="false">
 		<activity android:name=".Main" android:label="@string/app_name"
-			android:theme="@android:style/Theme.NoTitleBar"
-			android:launchMode="singleInstance">
+			android:theme="@android:style/Theme.NoTitleBar" android:launchMode="singleInstance">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
 
-		<activity android:name="SimpleListActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
-      	<activity android:name="ProcStatReader" android:theme="@android:style/Theme.NoTitleBar"></activity>
-      	<activity android:name="ProcCpuinfoReader" android:theme="@android:style/Theme.NoTitleBar"></activity>
-      	<activity android:name="SystemInfo" android:theme="@android:style/Theme.NoTitleBar"></activity>
-      	<activity android:name="ThreadMaster" android:theme="@android:style/Theme.NoTitleBar"></activity>
-      	<activity android:name="SystemInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
-      	
-		<activity android:name="AttachmentReader">
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<data android:pathPattern=".*\\.htm" />
-				<data android:mimeType="text/html" />
-			</intent-filter>
-		</activity>
+		<activity android:name="CalculatePiActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+		<activity android:name="GuiManipulatorActivity"
+			android:theme="@android:style/Theme.NoTitleBar"></activity>
+		<activity android:name="SystemInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
 
 	</application>
 </manifest>
