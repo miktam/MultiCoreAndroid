@@ -44,23 +44,14 @@ public class Main extends TabActivity {
 					.setContent(sysInfoActivity);
 			tabHost.addTab(spec);		
 
-			Intent piCalculator = new Intent().setClass(this,
-					CalculatePiActivity.class);
+			Intent mapReduce = new Intent().setClass(this,
+					MapReduceActivity.class);
 			spec = tabHost
-					.newTabSpec("pi")
-					.setIndicator("\u03C0 calculator",
+					.newTabSpec("map reduce")
+					.setIndicator("Map Reduce",
 							res.getDrawable(R.drawable.btn_square_overlay_disabled))
-					.setContent(piCalculator);
-			tabHost.addTab(spec);			
-			
-			Intent guiManipulator = new Intent().setClass(this,
-					GuiManipulatorActivity.class);
-			spec = tabHost
-					.newTabSpec("master")
-					.setIndicator("GUI elements adder",
-							res.getDrawable(R.drawable.btn_circle_normal))
-					.setContent(guiManipulator);
-			tabHost.addTab(spec);
+					.setContent(mapReduce);
+			tabHost.addTab(spec);					
 
 			tabHost.setCurrentTab(0);
 		} catch (Exception e) {

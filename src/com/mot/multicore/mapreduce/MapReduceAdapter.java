@@ -1,4 +1,4 @@
-package com.mot.multicore.calculatorpi;
+package com.mot.multicore.mapreduce;
 
 import java.util.List;
 
@@ -11,14 +11,14 @@ import android.widget.TextView;
 
 import com.mot.multicore.R;
 
-public class CalculatorPiAdapter extends ArrayAdapter<CalculatorPiEntry> {
+public class MapReduceAdapter extends ArrayAdapter<MapReduceEntry> {
 
-	private List<CalculatorPiEntry> piEntry;
+	private List<MapReduceEntry> entries;
 
-	public CalculatorPiAdapter(Context context, int textViewResourceId,
-			List<CalculatorPiEntry> items) {
+	public MapReduceAdapter(Context context, int textViewResourceId,
+			List<MapReduceEntry> items) {
 		super(context, textViewResourceId, items);
-		this.piEntry = items;
+		this.entries = items;
 	}
 
 	@Override
@@ -29,25 +29,29 @@ public class CalculatorPiAdapter extends ArrayAdapter<CalculatorPiEntry> {
 					Context.LAYOUT_INFLATER_SERVICE);
 			currentView = vi.inflate(R.layout.system_info_row, null);
 		}
-		CalculatorPiEntry pi = piEntry.get(position);
-		if (null != pi) {
-			TextView titleView = (TextView) currentView.findViewById(R.id.title);
-			TextView detailView = (TextView) currentView.findViewById(R.id.detail);
+		MapReduceEntry entry = entries.get(position);
+		if (null != entry) {
+			TextView titleView = (TextView) currentView
+					.findViewById(R.id.title);
+			TextView detailView = (TextView) currentView
+					.findViewById(R.id.detail);
+
 			TextView helpView = (TextView) currentView.findViewById(R.id.help);
+
 			if (null != titleView) {
-				titleView.setText(String.valueOf(pi.timeOfCalculation) + "ms");
+				titleView.setText(entry.value.toString());
 			}
 			if (null != detailView) {
-				detailView.setText("threads used:" + pi.threadsUsed);
+				detailView.setText("times found:" + entry.occurence);
+			}
 
 			if (null != helpView) {
-				helpView.setText(pi.calculatedPiString);
+				helpView.setText("" + entry.threadsUsed);
 			}
-				return currentView;
-			}
+			return currentView;
+
 		}
-		
+
 		return currentView;
 	}
 }
- 
