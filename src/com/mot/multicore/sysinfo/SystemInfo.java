@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.util.Log;
 
+import com.mot.multicore.BenchmarkResult;
 import com.mot.multicore.tools.FileReader;
 
 public class SystemInfo {
@@ -38,16 +39,13 @@ public class SystemInfo {
 	public static List<SystemInfo> procSpeedReader() {
 
 		String curFreqPath = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
-		String minFreqPath = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq";
 		String maxFreqPath = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq";
 
 		List<SystemInfo> list = new ArrayList<SystemInfo>();
 		list.add(new SystemInfo("current CPU frequency", FileReader
-				.readFileWithCat(curFreqPath), "taken from " + curFreqPath));
-		list.add(new SystemInfo("minimum CPU frequency", FileReader
-				.readFileWithCat(minFreqPath), "taken from " + minFreqPath));
+				.readFileWithCat(curFreqPath), ""));
 		list.add(new SystemInfo("maximum CPU frequency", FileReader
-				.readFileWithCat(maxFreqPath), "taken from " + maxFreqPath));
+				.readFileWithCat(maxFreqPath), ""));
 
 		return list;
 	}
@@ -97,13 +95,13 @@ public class SystemInfo {
 			String[] arr = entry.split(" ");
 
 			if (arr.length > 1) {
-				SystemInfo sysInfo = new SystemInfo("", "", "");
+				SystemInfo sysInfo = null;
 
-				if (arr[0].startsWith("cpu"))
-					sysInfo = new SystemInfo(
-							arr[0],
-							arr[1] + " " + arr[2] + " " + arr[3],
-							"amount of time the CPU has spent performing different kinds of work: user, nice, system");
+				// skip cpu (we need only cpu0, cpu1 etc)
+				if (arr[0].startsWith("cpu") && arr[0].length() > 3) {
+					sysInfo = new SystemInfo(arr[0], arr[1] + " " + arr[3],
+							"processes executing in user and system mode");
+				}
 
 				if (arr[0].startsWith("intr"))
 					sysInfo = new SystemInfo(arr[0], arr[1],
@@ -131,12 +129,41 @@ public class SystemInfo {
 					lastOne = true;
 				}
 
-				res.add(sysInfo);
+				if (null != sysInfo)
+					res.add(sysInfo);
 			}
 		}
 
 		Log.v(TAG, "collected: " + res);
 		return res;
+	}
+
+	/**
+	 * Depends on amount of cores - could return:
+	 * 2 values for 1 core
+	 * 4 values for 2 cores
+	 * @return pair of ints: amount of user and system processes
+	 */
+	public static List<Integer> measureUserSystemProcCount() {
+		List<Integer> ints = new ArrayList<Integer>();
+
+		List<String> procStatInfo = FileReader.transformFile("/proc/stat", 10);
+
+		for (String entry : procStatInfo) {
+
+			String[] arr = entry.split(" ");
+
+			// skip cpu (we need only cpu0, cpu1 etc)
+			if (arr[0].startsWith("cpu") && arr[0].length() > 3) {
+				int userProcs = Integer.valueOf(arr[1]);
+				int systemProcs = Integer.valueOf(arr[3]);
+
+				ints.add(userProcs);
+				ints.add(systemProcs);
+			}
+		}
+
+		return ints;
 	}
 
 	/**
@@ -175,6 +202,7 @@ public class SystemInfo {
 
 	/**
 	 * Create dummy elements
+	 * 
 	 * @param howMany
 	 * @return created list
 	 */

@@ -7,6 +7,9 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.mot.multicore.R;
 import com.mot.multicore.sysinfo.SystemInfo;
@@ -19,6 +22,33 @@ public class SystemInfoActivity extends ListActivity {
 	private SystemInfoAdapter sysInfoAdapter;
 	private Runnable sysViewerThread;
 	private final String TAG = SystemInfoActivity.class.getName();
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.settings, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.menu_results:
+			Log.v(TAG, "show results!");
+			AppMenu.showResults(this);
+			return true;
+		case R.id.menu_help:
+			Log.v(TAG, "show help");
+			AppMenu.showHelp(this);
+			return true;
+		case R.id.menu_rate:
+			Log.v(TAG, "rate app");
+			AppMenu.rateApp(this);
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +67,7 @@ public class SystemInfoActivity extends ListActivity {
 		Thread thread = new Thread(null, sysViewerThread, "MagentoBackground");
 		thread.start();
 		dialog = ProgressDialog.show(SystemInfoActivity.this, "",
-				this.getString(R.string.converting), true);
+				this.getString(R.string.get_system_info), true);
 	}
 
 	private Runnable dataChangerNotifier = new Runnable() {
@@ -59,12 +89,10 @@ public class SystemInfoActivity extends ListActivity {
 		List<SystemInfo> cpuInfo = SystemInfo.procCpuInfoReader();
 
 		// extract meat first
-		sysInfoEntries = cpuInfo.subList(0, 3);
+		sysInfoEntries = (SystemInfo.procSpeedReader());
+		sysInfoEntries.addAll(cpuInfo.subList(0, 3));
 		sysInfoEntries.add(SystemInfo.coresInfo());
 		sysInfoEntries.addAll(SystemInfo.procCpuStatReader());
-		sysInfoEntries.addAll(SystemInfo.procSpeedReader());
-
-		Log.v(TAG, "sys info added");
 
 		runOnUiThread(dataChangerNotifier);
 

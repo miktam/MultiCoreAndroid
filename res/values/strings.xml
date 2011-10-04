@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MultiCore Android</string>
-    <string name="converting">calculating...</string>
-    <string name="please_wait">Czekaj...</string>
-    <string name="howto">Aplikacja przetwarza HTML wysłany do niej używając wielu wątków.</string>
-    <string name="howto_label">MultiCore Android - instrukcja obsługi</string>
+    <string name="converting">running benchmark...</string>
+    <string name="get_system_info">getting CPU info...</string>
     <string name="emptyItem"></string>
+    <string name="about">About</string>
+    <string name="results">Statistics</string>
+    <string name="rate">Rate application</string>
+    <string name="if_you_enjoy">"If you enjoy using the application, please take a moment to rate it. \nThank you for your support!"</string>
+    <string name="remind_later">"Remind me later"</string>
+    <string name="about_app_short_and_concise">"Benchmark measures speed of processor core(s) by applying Map Reduce algorithm to count occurrence of integers in [1,1000] interval. Also, application displays detailed information about CPU."</string>
+    <string name="dismiss">"Dismiss"</string>
+    <string name="run_benchmark_first">"Run benchmark first"</string>
+    <string name="run_benchmark_button">"Run benchmark"</string>
 </resources>

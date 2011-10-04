@@ -13,6 +13,8 @@ import com.mot.multicore.tools.ToastMaker;
 public class Main extends TabActivity {
 	private static final String TAG = Main.class.getName();
 
+	public static TabHost tabHost;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		Log.d(TAG, "onCreate");
@@ -29,7 +31,7 @@ public class Main extends TabActivity {
 
 	private void init() {
 		Resources res = getResources();
-		TabHost tabHost = getTabHost();
+		tabHost = getTabHost();
 		tabHost.clearAllTabs();
 		TabHost.TabSpec spec;
 
@@ -42,16 +44,17 @@ public class Main extends TabActivity {
 					.setIndicator("Processor information",
 							res.getDrawable(R.drawable.btn_circle_disable))
 					.setContent(sysInfoActivity);
-			tabHost.addTab(spec);		
+			tabHost.addTab(spec);
 
 			Intent mapReduce = new Intent().setClass(this,
 					MapReduceActivity.class);
 			spec = tabHost
 					.newTabSpec("map reduce")
-					.setIndicator("Map Reduce",
+					.setIndicator(
+							"Map Reduce",
 							res.getDrawable(R.drawable.btn_square_overlay_disabled))
 					.setContent(mapReduce);
-			tabHost.addTab(spec);					
+			tabHost.addTab(spec);
 
 			tabHost.setCurrentTab(0);
 		} catch (Exception e) {
